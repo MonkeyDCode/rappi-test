@@ -67,7 +67,7 @@ import { PriceOrderPipe } from './pipes/price-order.pipe';
       logOnly: environment.production
     })
   ],
-  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+  providers: [{provide: APP_BASE_HREF, useValue : '/rappi-test/' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
