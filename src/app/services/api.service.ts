@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiURL = '/data/';
+  private apiURL = '/rappi-test/data/';
 
   constructor(private http: HttpClient) {}
 
