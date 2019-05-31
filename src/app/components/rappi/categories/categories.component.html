@@ -1,0 +1,12 @@
+<ul>
+  <li *ngFor="let cat of categories ">
+    <a [innerHTML]="cat.name" (click)="filter(cat.id, cat.name)"></a>
+    <app-categories *ngIf=" cat.sublevels" [categories] = "cat.sublevels"></app-categories>
+    <div *ngIf="!cat.sublevels" >
+        <input type="text" 
+          placeholder="Buscar en {{cat.name}}" 
+          [formControl]="txtInput"
+          (keyup.enter)="filtertext(cat.id, cat.name)">    
+      </div>
+  </li>
+</ul> 

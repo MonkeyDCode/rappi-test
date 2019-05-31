@@ -1,0 +1,54 @@
+<h1 [innerHTML]="filtro" *ngIf="!(filtro == 'ninguno')"></h1>
+<h1 *ngIf="filtro == 'ninguno'">Productos</h1>
+<div class="row">
+    <div class="col-xs-12 sorter-div">
+      <label>Ordenar por:&nbsp;</label>
+      <div class="btn-group">
+        <a class="btn-sm btn btn-success" [ngClass]="{'active': order=='price'}" (click)="sorter('price')"> precio</a>
+        <a class="btn-sm btn btn-success" [ngClass]="{'active': order=='available'}" (click)="sorter('available')"> disponibilidad</a>
+        <a class="btn-sm btn btn-success" [ngClass]="{'active': order=='quantity'}" (click)="sorter('quantity')"> cantidad</a>
+      </div>
+    </div>
+</div>
+<div class="row sorter-div">
+    <label for="filtered"> filtrar por: &nbsp;</label>
+    <select name="filtered" id ="filtered" class="custom-select" [(ngModel)]="filtered">
+      <option selected [ngValue]='0'>Ninguno</option>
+      <option [ngValue]='1'>Disponibilidad</option>
+      <option [ngValue]='2'>Precio</option>
+      <option [ngValue]='3'>Stock</option>
+    </select>
+
+    <div class="" *ngIf="filtered === 1">
+      <input name="availableF" type="radio" (click)="availability = 1;"> &nbsp;Disponible<br>
+      <input name="availableF" type="radio" (click)="availability = 2;"> &nbsp;No Disponible
+    </div>
+
+    <div class="slidecontainer" *ngIf="filtered === 2">
+      <input type="range" min="1" max="10000" [(ngModel)]="maxPrice" class="slider" id="myRange">
+      <p>Precio entre 0 y {{maxPrice}}:</p>
+    </div>
+  <div class="slidecontainer" *ngIf="filtered === 3">
+      <input type="range" min="1" max="1500" [(ngModel)]="stockQuantity" class="slider" id="myRange">
+      <p>Stock entre 0 y {{stockQuantity}}:</p>
+    </div>
+
+
+
+</div>
+
+<div class="prods-container-list">
+  <h1 *ngIf="products.length == 0">No hay resultados para la busqueda</h1>
+  <div class="col-md-4 col-sm-6 col-xs-12 product-conts" *ngFor="let item of products | orderAvailable: availability :filtered
+                                                          | priceOrder: maxPrice :filtered 
+                                                          | stockOrder: stockQuantity :filtered  ; let isOdd=odd;let isEven=even">
+    <div class="product">
+        <div class="image" [ngClass]="{'image-1': isOdd ,'image-2': isEven }"></div>
+        <p class="title text-center"><span [innerHTML]="item.name"></span></p>
+        <p>Cantidad:<span [innerHTML]="item.quantity"></span></p>
+        <p>Precio:<span [innerHTML]="item.price"></span></p>
+        <p *ngIf="!item.available">NO Disponible</p>
+        <app-add-cart [item]="item" *ngIf="item.available"></app-add-cart>
+    </div>
+  </div>
+</div>

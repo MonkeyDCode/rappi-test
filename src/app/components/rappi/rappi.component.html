@@ -1,0 +1,17 @@
+
+<div class="row">
+  <div class="col-sm-4 col-md-3 col-xs-12">
+    <h1>Categorias</h1>
+    <ul >
+      <li *ngFor="let cat of categories ">
+        <a [innerHTML]="cat.name" (click)="filter(cat.id, cat.name)"></a>
+        <app-categories *ngIf=" cat.sublevels"
+          [categories] = "cat.sublevels"></app-categories>
+
+      </li>
+    </ul>
+  </div>
+  <div>
+    <app-products class="col-sm-8  col-md-9 col-xs-12"></app-products>
+  </div>
+</div>

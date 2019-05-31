@@ -1,0 +1,30 @@
+
+<div class="row" *ngIf="items">
+  <div class="col-xs-12" *ngIf="items.length>0">
+    <div class=" col-sm-5 text-center"> <h2>Shopping Cart</h2> </div>
+    <div class=" col-sm-3 text-center"> <h2 class="hidden-xs">Cantidad</h2> </div>
+    <div class=" col-sm-2 text-center"> <h2 class="hidden-xs">Precio</h2> </div>
+    <div class=" col-sm-2 text-center"> <h2 class="hidden-xs">Subtotal</h2> </div>
+  </div>
+</div>
+<div class="row"  *ngIf="items">
+  <div class="col-xs-12" *ngFor="let item of items">
+    <div class=" col-sm-5 col-xs-12  text-center" > <h4 [innerHTML]="item.name"></h4></div>
+    <div class=" col-sm-3  col-xs-12 text-center" >
+      <a class="btn btn-xs btn-danger" (click)="remove(item.id)">-</a> 
+      {{item.quantity}} 
+      <a class="btn btn-xs btn-danger" (click)="add(item.id)">+</a>&nbsp;
+      <a class="btn btn-xs btn-info" (click)="delete(item.id)">Eliminar</a>
+    </div>
+    <div class=" col-sm-2 hidden-xs  text-center" [innerHTML]="'$'+item.price"> </div>
+    <div class=" col-sm-2 col-xs-12 text-center" [innerHTML]="'$'+(item.subtotal*item.quantity)"> </div>
+  </div>
+  <div class="col-xs-12 text-center" *ngIf="items.length===0">
+    <h3>No hay elementos en el carrito</h3>
+    <h4><a routerLink="/">Volver a productos</a></h4>
+  </div>
+</div>
+<div class ="col-xs-12 col-sm-4 col-sm-offset-4">
+  <a class="btn form-control btn-primary" (click)="resume()">Pagar</a>
+</div>
+
