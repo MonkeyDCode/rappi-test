@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { AngularWebStorageModule } from 'angular-web-storage';
 import { HttpClientModule } from '@angular/common/http';
 
+import {APP_BASE_HREF} from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,7 +67,7 @@ import { PriceOrderPipe } from './pipes/price-order.pipe';
       logOnly: environment.production
     })
   ],
-  providers: [],
+  providers: [{provide: APP_BASE_HREF, useValue : '/' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
