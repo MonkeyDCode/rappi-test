@@ -23,7 +23,7 @@
     "@ngrx/store": "^6.1.2",
     "@ngrx/store-devtools": "^6.1.2",
     "angular-web-storage": "^7.0.0-beta.1",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "core-js": "^2.5.4",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
